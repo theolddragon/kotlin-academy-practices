@@ -24,25 +24,17 @@ data class Name(val name: String)
 
 class FunctionReference {
     val add: (Int, Int) -> Int = Int::plus
-    val printNum: (Int) -> Int = ::print
+    val printNum: (Int) -> Unit = ::print
     val triple: (Int) -> Int = 3::times
     val produceName: (String) -> Name = ::Name
-
-    // TODO: Implement printNum, triple and produceName properties using function references
-    //  to functions from the Kotlin stdlib or from the Name class
-    //  See add property for example
 }
 
 class FunctionMemberReference {
     val add: (Int, Int) -> Int = this::add
-    val printNum: (Int) -> Int = this::printNum
-    val triple: (Int) -> Int = this.triple
+    val printNum: (Int) -> Unit = this::printNum
+    val triple: (Int) -> Int = this::triple
     val produceName: (String) -> Name = this::produceName
     val longestOf: (String, String, String) -> String = this::longestOf
-
-    // TODO: Implement printNum, triple, produceName and longestOf properties using function references
-    //  to functions from the current class
-    //  See add property for example
 
     private fun add(num1: Int, num2: Int): Int = num1 + num2
 
@@ -66,12 +58,8 @@ class BoundedFunctionReference {
     private val classic = FunctionsClassic()
 
     val add: (Int, Int) -> Int = classic::add
-    val printNum: (Int) -> Int = classic::printNum
+    val printNum: (Int) -> Unit = classic::printNum
     val triple: (Int) -> Int = classic::triple
     val produceName: (String) -> Name = classic::produceName
     val longestOf: (String, String, String) -> String = classic::longestOf
-
-    // TODO: Implement printNum, triple, produceName and longestOf properties using function references
-    //  to functions from the `classic` object
-    //  See add property for example
 }
