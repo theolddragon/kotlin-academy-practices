@@ -42,7 +42,7 @@ data class TdBuilder(
     var text: String = ""
 ) {
     operator fun String.unaryPlus() {
-        text = this
+        text += this
     }
 
     override fun toString(): String = "<td>$text</td>"
