@@ -3,18 +3,12 @@ package function.chapter08.beststudents
 import org.junit.Test
 import kotlin.test.assertEquals
 
+val INTERNSHIP = listOf(5000) + IntRange(2, 4).map { 3000 } + IntRange(5, 10).map { 1000 }
+
 fun List<Student>.makeBestStudentsList(): String = this
-    .asSequence()
     .filter { it.pointsInSemester >= 30 && it.result >= 80 }
     .sortedByDescending { it.result }
-    .take(10)
-    .mapIndexed { index, student ->
-        student to when (index) {
-            0 -> 5_000
-            in 1..3 -> 3_000
-            else -> 1_000
-        }
-    }
+    .zip(INTERNSHIP)
     .sortedWith(compareBy<Pair<Student, Int>> { it.first.surname }.then(compareBy { it.first.name }))
     .joinToString("\n") { "${it.first.name} ${it.first.surname}, \$${it.second}" }
 
